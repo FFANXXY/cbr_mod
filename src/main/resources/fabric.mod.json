@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "commandblockrunner",
+	"version": "${version}",
+	"name": "CommandBlockRunner",
+	"description": "该MOD主要实现了在命令方块页运行的效果\nThis mod mainly implements the effect of running on the command block page",
+	"authors": [
+		"FFANXXY"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/commandblockrunner/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.ffanxxy.commandblockrunner.CommandBlockRunner"
+		],
+		"fabric-datagen": [
+			"com.ffanxxy.commandblockrunner.CommandBlockRunnerDataGenerator"
+		],
+		"client": [
+			"com.ffanxxy.commandblockrunner.CommandBlockRunnerClient"
+		]
+	},
+	"mixins": [
+		"commandblockrunner.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
