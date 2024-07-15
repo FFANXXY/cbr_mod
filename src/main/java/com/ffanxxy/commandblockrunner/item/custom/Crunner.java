@@ -55,7 +55,7 @@ public class Crunner extends Item {
                                player.sendMessage(command_text);
                                //          运行命令方块
                                commandBlockBlockEntity.setAuto(true);
-//                               world.updateNeighbors(pos,block); //有问题的话可以删去
+                               world.updateNeighbors(pos,block); //有问题的话可以删去
                                commandBlockBlockEntity.setAuto(false);
                            } else if (useFrequency == 2) {
                                useFrequency=0;
