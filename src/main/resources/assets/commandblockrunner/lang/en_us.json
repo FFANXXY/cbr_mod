@@ -1,4 +1,16 @@
 {
-  "item.commandblockrunner.out_runner": "Running wand",
-  "itemGroup.cbr": "Command Block Runner"
+  "item.commandblockrunner.out_runner": "Running wand(DEBUG)",
+  "item.commandblockrunner.crunner": "Running wand",
+  "item.commandblockrunner.ccopyer": "Copying wand",
+
+  "itemGroup.cbr": "Command Block Runner",
+  "item.tooltip.crunner": "Mode:Only One",
+  "cbr.debug": "DEBUG",
+  "cbr.debug.headless": "It cannot be copied in the current mode!",
+  "cbr.debug.empty": "There's nothing in the command block",
+
+  "cbr.ran":"Executed:",
+  "item.tooltip.ccopyer": "Right-click on the command block to copy the command block",
+
+  "item.ccopy.copy": "Copy"
 }

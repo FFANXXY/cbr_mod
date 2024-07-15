@@ -32,7 +32,8 @@ public class ModItemGroup {
         ItemGroup.create(null,-1).displayName(Text.translatable("itemGroup.cbr"))
                 .icon(() -> new ItemStack(ModItems.OUT_RUNNER))
                 .entries((displayContext, entries) -> {
-                    entries.add(ModItems.OUT_RUNNER);
+                    entries.add(ModItems.CRUNNER);
+                    entries.add(ModItems.CCOPYER);
                     entries.add(Blocks.COMMAND_BLOCK);
                 })
                .build());

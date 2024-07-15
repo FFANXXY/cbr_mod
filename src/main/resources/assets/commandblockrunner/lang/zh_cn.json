@@ -1,4 +1,16 @@
 {
-  "item.commandblockrunner.out_runner": "运行魔杖",
-  "itemGroup.cbr": "命令运行者"
+  "item.commandblockrunner.out_runner": "运行魔杖(Debug)",
+  "item.commandblockrunner.crunner": "运行魔杖",
+  "item.commandblockrunner.ccopyer": "复制魔杖",
+
+  "itemGroup.cbr": "命令运行者",
+  "item.tooltip.crunner": "模式:仅一个",
+  "cbr.debug": "DEBUG",
+  "cbr.debug.headless": "不可以在当前模式复制",
+  "cbr.debug.empty": "命令方块没有内容",
+
+  "cbr.ran":"已执行:",
+  "item.tooltip.ccopyer": "右键命令方块以复制命令方块",
+
+  "item.ccopy.copy": "复制"
 }
