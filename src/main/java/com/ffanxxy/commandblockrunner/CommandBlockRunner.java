@@ -2,6 +2,7 @@ package com.ffanxxy.commandblockrunner;
 
 import com.ffanxxy.commandblockrunner.item.ModItemGroup;
 import com.ffanxxy.commandblockrunner.item.ModItems;
+import com.ffanxxy.commandblockrunner.tags.ModBlockTags;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class CommandBlockRunner implements ModInitializer {
 		LOGGER.info("Loading cbr!");
 		ModItems.registerModItems();
 		ModItemGroup.registerModItemGroup();
+		ModBlockTags.registerModBlockTags();
 		LOGGER.info("cbr loaded!");
 	}
 }

@@ -9,8 +9,14 @@
   "cbr.debug.headless": "不可以在当前模式复制",
   "cbr.debug.empty": "命令方块没有内容",
 
-  "cbr.ran":"已执行:",
-  "item.tooltip.ccopyer": "右键命令方块以复制命令方块",
+  "cbr.ran":"已执行:(点击获得命令方块)",
+  "cbr.ran.empty": "无法执行空白指令",
+  "cbr.ran.repeatrun": "已设置命令方块为保持开启",
+  "cbr.ran.repeatstop": "已设置命令方块为需要红石",
 
-  "item.ccopy.copy": "复制"
+  "item.tooltip.ccopyer": "右键命令方块以复制命令方块",
+  "item.ccopy.copy": "复制",
+  "item.ccopy.copied": "已复制:",
+  "item.ccopy.error": "不可以复制空白!",
+  "item.ccopy.error_not_initialized": "暂未加载完成，请尝试等待或刷新方块状态!"
 }

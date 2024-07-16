@@ -32,6 +32,8 @@ public class ModItemGroup {
                     entries.add(ModItems.CRUNNER);
                     entries.add(ModItems.CCOPYER);
                     entries.add(Blocks.COMMAND_BLOCK);
+                    entries.add(Blocks.CHAIN_COMMAND_BLOCK);
+                    entries.add(Blocks.REPEATING_COMMAND_BLOCK);
                 })
                .build());
     public static void registerModItemGroup() {

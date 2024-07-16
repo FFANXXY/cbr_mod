@@ -9,8 +9,14 @@
   "cbr.debug.headless": "It cannot be copied in the current mode!",
   "cbr.debug.empty": "There's nothing in the command block",
 
-  "cbr.ran":"Executed:",
-  "item.tooltip.ccopyer": "Right-click on the command block to copy the command block",
+  "cbr.ran":"Executed:(Click on the Get Command block)",
+  "cbr.ran.empty": "No content!",
+  "cbr.ran.repeatrun": "The command block has been set to remain on",
+  "cbr.ran.repeatstop": "The command block has been set to \"Need redstone\"",
 
-  "item.ccopy.copy": "Copy"
+  "item.tooltip.ccopyer": "Right-click on the command block to copy the command block",
+  "item.ccopy.copy": "Copy",
+  "item.ccopy.copied": "Copied:",
+  "item.ccopy.error": "Blanks cannot be copied!",
+  "item.ccopy.error_not_initialized": "It has not yet been loaded, please try to wait or refresh the block state!"
 }
