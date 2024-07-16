@@ -13,6 +13,8 @@
   "cbr.ran.empty": "No content!",
   "cbr.ran.repeatrun": "The command block has been set to remain on",
   "cbr.ran.repeatstop": "The command block has been set to \"Need redstone\"",
+  "cbr.ran.chainrun": "The chain command block has been set to remain on",
+  "cbr.ran.chainstop": "The chain command block has been set to \"Need redstone\"",
 
   "item.tooltip.ccopyer": "Right-click on the command block to copy the command block",
   "item.ccopy.copy": "Copy",

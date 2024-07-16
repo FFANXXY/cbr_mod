@@ -13,6 +13,8 @@
   "cbr.ran.empty": "无法执行空白指令",
   "cbr.ran.repeatrun": "已设置命令方块为保持开启",
   "cbr.ran.repeatstop": "已设置命令方块为需要红石",
+  "cbr.ran.chainrun": "已将连锁命令方块设置为保持开启",
+  "cbr.ran.chainstop": "已将连锁命令方块设置为需要红石",
 
   "item.tooltip.ccopyer": "右键命令方块以复制命令方块",
   "item.ccopy.copy": "复制",

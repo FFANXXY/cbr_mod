@@ -36,7 +36,6 @@ public class Ccopyer extends Item {
         PlayerEntity player = context.getPlayer();
         BlockPos pos = context.getBlockPos();
         World world = context.getWorld();
-
         if (!world.isClient) {
             return ActionResult.PASS; // 如果在服务器上，则跳过
         }
@@ -48,7 +47,10 @@ public class Ccopyer extends Item {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CommandBlockBlockEntity commandBlockBlockEntity) {
                 if (commandBlockBlockEntity.hasWorld() && commandBlockBlockEntity.getWorld() == world) {
+
+
                     String command = commandBlockBlockEntity.getCommandExecutor().getCommand();
+                    CommandBlockRunner.LOGGER.info("Copier_String:{}",command);
 
                     char fc = getFirstChar(command);
                     Text Text_copied = Text.translatable("item.ccopy.copied");
@@ -103,8 +105,10 @@ public class Ccopyer extends Item {
     public static char getFirstChar(String text) {
 
         // 检查字符串是否为空
-        if (text != null && !text.isEmpty()) {
-            return text.charAt(0);
+        if (!text.isEmpty()) {
+            char c;
+            c = text.charAt(0);
+            return c;
         } else {
             CommandBlockRunner.LOGGER.info("String-{} is empty", text);
             return '!';
