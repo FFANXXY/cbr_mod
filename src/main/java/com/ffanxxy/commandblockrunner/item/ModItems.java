@@ -19,10 +19,15 @@ public class ModItems {
 
 
     private static Item registerItems(String id,Item item) {
-/*
+        //版本改动须知:
+        /*
         return Registry.register(Registries.ITEM,RegistryKey.of(Registries.ITEM.getKey(), new Identifier(CommandBlockRunner.MOD_ID,id)), item);
         If there has bugs,you can change Identifier.of to /new Identifier()/
       For example:  return Registry.register(Registries.ITEM,new Identifier(CommandBlockRunner.MOD_ID,id), item);
+          [The English version is not complete for the time being, please take a look at the Chinese version!!!]
+      ====================
+      如果有bug，注册的方法记得改成For example:  return Registry.register(Registries.ITEM,new Identifier(CommandBlockRunner.MOD_ID,id), item);
+        如果是高版本，如1.21，则不用看此注释，如果是1.20.5以下版本，记得改为new Identifier()
 */
         return Registry.register(Registries.ITEM,Identifier.of(CommandBlockRunner.MOD_ID,id), item);
     }

@@ -37,7 +37,7 @@ public class Ccopyer extends Item {
         BlockPos pos = context.getBlockPos();
         World world = context.getWorld();
         if (!world.isClient) {
-            return ActionResult.PASS; // 如果在服务器上，则跳过
+            return ActionResult.PASS; // 如果在服务器上，则跳过，暂未检测是否可行
         }
 
         BlockState blockState = world.getBlockState(pos);

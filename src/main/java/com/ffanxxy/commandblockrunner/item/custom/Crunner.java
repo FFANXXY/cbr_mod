@@ -20,8 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.*;
 
-import static net.minecraft.sound.SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE;
-import static net.minecraft.sound.SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP;
+import static net.minecraft.sound.SoundEvents.*;
 
 public class Crunner extends Item {
     public Crunner(Settings settings) {
@@ -38,7 +37,6 @@ public class Crunner extends Item {
         BlockPos pos = context.getBlockPos();
         World world = context.getWorld();
         BlockState blockState = world.getBlockState(pos);
-        Block block = blockState.getBlock();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         CommandBlockBlockEntity commandBlockBlockEntity = (CommandBlockBlockEntity) blockEntity;
         if (blockState.isOf(Blocks.COMMAND_BLOCK)) {
@@ -46,7 +44,7 @@ public class Crunner extends Item {
                 String command = commandBlockBlockEntity.getCommandExecutor().getCommand();
                 CommandBlockRunner.LOGGER.info("{}Command:", command);
 
-//            输出文本
+//            给东西
                 String runCommand = "/give @s command_block" +
                         "[block_entity_data={Command:\"" +
                         command + "\",id:\"minecraft:command_block\"}]";
@@ -67,12 +65,12 @@ public class Crunner extends Item {
                     //            播放音效
                     player.sendMessage(translatable);
                     player.sendMessage(command_text);
-                    if (useFrequency == 0) {
-                        //          运行命令方块
-                        commandBlockBlockEntity.setAuto(true);
+                    //          运行命令方块
+                    commandBlockBlockEntity.setAuto(true);
 //                               world.updateNeighbors(pos,block); //有问题的话可以删去
-                        commandBlockBlockEntity.setAuto(false);
-                        useFrequency++;
+                    commandBlockBlockEntity.setAuto(false);
+                    useFrequency++;
+                    if (useFrequency == 0) {
                         return ActionResult.SUCCESS;
                     } else if (useFrequency == 1) {
                         useFrequency = 0;
@@ -87,56 +85,90 @@ public class Crunner extends Item {
                 }
             }
 
+        }
+
+        else if (blockState.isOf(Blocks.REPEATING_COMMAND_BLOCK)) {
+
 //
 //            重复命令方块
 //
-        } else if (blockState.isOf(Blocks.REPEATING_COMMAND_BLOCK)) {
-
             String pos_String = pos.toString();
             CommandBlockRunner.LOGGER.info("String_posShow.debug:{}.pos,{}.(String)Pos", pos, pos_String);
+
+            world.playSound(player, pos, BLOCK_LEVER_CLICK, SoundCategory.PLAYERS, 75.0F, 1.0F);
+            if (commandBlockBlockEntity == null) throw new AssertionError();
+            boolean isAuto = commandBlockBlockEntity.isAuto();
+            if (!isAuto) {
+                if (player == null) throw new AssertionError();
+                if (canFre == 0) {
+                    player.sendMessage(Text.translatable("cbr.ran.repeatrun")
+                            .styled(style -> style
+                                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(pos_String))
+                                    )
+                            ));
+                    canFre++;
+                } else {
+                    canFre = 0;
+                }
+                commandBlockBlockEntity.setAuto(true);
+                return ActionResult.SUCCESS;
+            } else {
+                commandBlockBlockEntity.setAuto(false);
+                if (player == null) throw new AssertionError();
+                if (canFre == 0) {
+                    player.sendMessage(Text.translatable("cbr.ran.repeatstop")
+                            .styled(style -> style
+                                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(pos_String))
+                                    )
+                            ));
+                    canFre++;
+                } else {
+                    canFre = 0;
+                }
+                return ActionResult.SUCCESS;
+            }
+        }
+
+        else if (blockState.isOf(Blocks.CHAIN_COMMAND_BLOCK)) {
+
+//            连锁命令方块
 
             world.playSound(player, pos, BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.PLAYERS, 75.0F, 1.0F);
             if (commandBlockBlockEntity == null) throw new AssertionError();
             boolean isAuto = commandBlockBlockEntity.isAuto();
             if (!isAuto) {
                 if (player == null) throw new AssertionError();
-                if (repFre == 0 ){
-                player.sendMessage(Text.translatable("cbr.ran.repeatrun")
-                        .styled(style -> style
-                                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(pos_String))
-                                )
-                        ));repFre++;}else {repFre=0;}
+                if (repFre == 0) {
+                    player.sendMessage(Text.translatable("cbr.ran.chainrun")
+                            .styled(style -> style
+                                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Meta"))
+                                    )
+                            ));
+                    repFre++;
+                } else {
+                    repFre = 0;
+                }
                 commandBlockBlockEntity.setAuto(true);
                 return ActionResult.SUCCESS;
             } else {
                 commandBlockBlockEntity.setAuto(false);
                 if (player == null) throw new AssertionError();
-                if (repFre == 0 ){
-                    player.sendMessage(Text.translatable("cbr.ran.repeatstop")
+                if (repFre == 0) {
+                    player.sendMessage(Text.translatable("cbr.ran.chainstop")
                             .styled(style -> style
-                                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal(pos_String))
+                                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Text.literal("Meta"))
                                     )
-                            ));repFre++;}else {repFre=0;}
+                            ));
+                    repFre++;
+                } else {
+                    repFre = 0;
+                }
                 return ActionResult.SUCCESS;
             }
-        } else if (blockState.isOf(Blocks.CHAIN_COMMAND_BLOCK)) {
-
-//            连锁命令方块
-
-                if (commandBlockBlockEntity != null) {
-                    if (player != null) {
-                        if (canFre == 0) {
-                        player.sendMessage(Text.translatable("cbr.ran.chainrun"));canFre++;}else{canFre=0;}
-                    }
-                    commandBlockBlockEntity.setAuto(true);
-                        world.updateNeighbors(pos, block);
-
-                } else {return ActionResult.FAIL;}
 
         } else {
             return ActionResult.PASS;
         }
-
         return ActionResult.FAIL;
     }
 //    Over
@@ -144,5 +176,4 @@ public class Crunner extends Item {
     public void appendTooltip(ItemStack itemStack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(Text.translatable("item.tooltip.crunner"));
     }
-
 }
